@@ -31,6 +31,7 @@ conflicts = str(nb_U)
 changed = str(nb_changed)
 nb_untracked = len([0 for status in Popen(['git','status','--porcelain',],stdout=PIPE).communicate()[0].decode("utf-8").splitlines() if status.startswith('??')])
 untracked = str(nb_untracked)
+branches = len([0 for br in Popen(['git','branch'],stdout=PIPE).communicate()[0].decode("utf-8").splitlines()])
 
 ahead, behind = 0,0
 
@@ -60,6 +61,6 @@ out = ' '.join([
 	conflicts,
 	changed,
 	untracked,
+	str(branches)
 	])
 print(out, end='')
-
